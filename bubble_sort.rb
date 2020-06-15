@@ -31,8 +31,9 @@ def bubble_sort_by(arr_param)
       arr_param[swap + 1] = arr_param[swap]
       arr_param[swap] = temp
     end
-
     print arr_param
+    puts ''
+    return arr_param
   end
 end
 
