@@ -8,9 +8,8 @@ def bubble_sort(array)
   array_size = array.length
   print array
   puts ''
-
   (array_size - 1).times do |_pass|
-    (array_size - 1).times do |swap|
+    (array_size - 1 - _pass).times do |swap|
       next unless array[swap] > array[swap + 1]
 
       temp = array[swap + 1]
@@ -18,9 +17,33 @@ def bubble_sort(array)
       array[swap] = temp
     end
   end
-  print array
+  array
 end
 
-bubble_sort([4, 6, 3, 6, 7, 8, 0])
+# testing bubble_sort
 
-# bubble_sort([7])
+print bubble_sort([4, 6, 3, 6, 7, 8, 0])
+
+def bubble_sort_by(ar)
+  array_size = ar.length
+  puts ''
+  print ar
+  puts ''
+  (array_size - 2).times do |_pass|
+    (array_size - 1 - _pass).times do |swap|
+      next unless yield(ar[swap], ar[swap + 1]) > 0
+
+      temp = ar[swap + 1]
+      ar[swap + 1] = ar[swap]
+      ar[swap] = temp
+    end
+  
+    print ar
+  end
+end
+
+# testing bubble_sort_by
+
+bubble_sort_by(%w[hi hello hey]) do |left, right|
+  left.length - right.length
+end
